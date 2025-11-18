@@ -1,0 +1,64 @@
+index = 0
+K = [1,2,3,4,5,6,7,8,9,10] #vektör
+
+flagTuple = [int, str, int] 
+tİnput = str(input("Artış doğrusallığı: ")) 
+T = None
+
+if tİnput.isdigit() == True:
+    try:
+        T = int(tİnput) 
+        
+    except Exception as tException:
+        T = None
+        print(tException) 
+
+if T:
+    if T is not None:
+        for i in range(1,len(K)):
+            if i != len(K) - 1:
+                if K[i] - K[i - 1]== T:
+                    index += 1
+        
+            if flagTuple[1] != "detected":
+                if i != len(K) - 1:
+                    if K[i + 1] - K[i - 1] == T:
+                        flagTuple[0] = i
+                        flagTuple[1] = "detected"
+
+                if K[i - 1] + T == K[i]:
+                    flagTuple[2] = i
+                    flagTuple[1] = "detected"
+       
+        if index == len(K) - 1:
+            print("Vektör doğrusal") 
+            
+        else:
+            try:
+                if index >= 1:
+                    try:
+                        vector = K[flagTuple[0]:index]
+                        t1, tN= vector[0], vector[len(vector) - 1]
+                    
+                        print(f"\nBozulma algılandı\nBOZULMA BAŞLANGICI: {flagTuple[0]}\nBOZULMA BİTİŞİ:{index}") 
+                        print(f"Kaç kaça kadar doğrusal: {t1}....{tN}") 
+                    except:
+                        try:
+                            vector = K[flagTuple[2]:index]
+                            t1, tN= vector[0], vector[len(vector) - 1]
+                    
+                            print(f"Bozulma algılandı\nBOZULMA:{index}") 
+                            print(f"Kaç kaça kadar doğrusal: {t1}....{tN}") 
+                            
+                        except Exception as e0:
+                            print(e0) 
+                else:
+                    print("vektör doğrusal değil") 
+                    
+            except Exception as e3:
+                print(index, e3, len(K),index) 
+                
+                
+
+
+    
